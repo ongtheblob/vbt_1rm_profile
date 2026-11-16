@@ -469,3 +469,207 @@ footer {
         max-width: 100%;
     }
 }
+
+
+/* =========================================
+   VBT PROFILING — SOFT LIGHT THEME
+   Paste at the bottom of style.css
+========================================= */
+
+body {
+    background: #f3f5f8;
+    color: #253449;
+}
+
+/* Main layout */
+.container {
+    color: #253449;
+}
+
+/* Header */
+header {
+    color: #253449;
+}
+
+header h1,
+header h2,
+header h3 {
+    color: #253449;
+}
+
+header p {
+    color: #64748b;
+}
+
+/* Main cards */
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 3px 12px rgba(30, 50, 80, 0.045);
+    color: #334155;
+}
+
+/* Section headings */
+.card h2,
+.card h3,
+.card h4 {
+    color: #253449;
+}
+
+/* Paragraphs and supporting text */
+p,
+label,
+.reference-box,
+.applied-notes {
+    color: #64748b;
+}
+
+/* Input fields */
+input,
+select,
+textarea {
+    background: #f8fafc;
+    color: #253449;
+    border: 1px solid #d8e0ea;
+    border-radius: 8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #6ba8df;
+    box-shadow: 0 0 0 3px rgba(107, 168, 223, 0.15);
+}
+
+/* Reference information */
+.reference-box {
+    background: #f1f6fb;
+    border: 1px solid #dce8f3;
+    border-radius: 10px;
+}
+
+/* Data rows */
+.data-row {
+    background: #f8fafc;
+    border: 1px solid #e5eaf0;
+}
+
+/* Metrics */
+.metrics {
+    gap: 14px;
+}
+
+.metric {
+    background: #f1f6fb;
+    border: 1px solid #dce8f3;
+    color: #334155;
+    border-radius: 12px;
+}
+
+.metric h3,
+.metric p {
+    color: #64748b;
+}
+
+/* Results */
+.results {
+    background: #ffffff;
+    color: #253449;
+}
+
+.main-result {
+    background: #eaf3fc;
+    border: 1px solid #d4e6f7;
+    color: #24649d;
+    border-radius: 12px;
+}
+
+.main-result h2,
+.main-result h3 {
+    color: #24649d;
+}
+
+/* R-squared quality indicator */
+.quality-box {
+    background: #f1f6fb;
+    border: 1px solid #dce8f3;
+    color: #334155;
+}
+
+/* Chart containers */
+.chart-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+/* Buttons */
+button,
+.secondary-btn {
+    transition: all 0.2s ease;
+}
+
+button {
+    border-radius: 8px;
+}
+
+.secondary-btn {
+    background: #eaf1f8;
+    color: #315d83;
+    border: 1px solid #d4e1ed;
+}
+
+.secondary-btn:hover {
+    background: #dceaf6;
+}
+
+.danger-btn,
+.reset-btn {
+    border-radius: 8px;
+}
+
+/* Feedback messages */
+.error {
+    background: #fff1f0;
+    color: #b42318;
+    border: 1px solid #fecdca;
+}
+
+.success-message {
+    background: #ecfdf3;
+    color: #067647;
+    border: 1px solid #abefc6;
+}
+
+/* Tables */
+table {
+    color: #334155;
+}
+
+th {
+    background: #edf2f7;
+    color: #475569;
+}
+
+td {
+    border-bottom: 1px solid #e8edf2;
+}
+
+/* General borders */
+hr {
+    border-color: #e2e8f0;
+}
+
+/* Keep the mobile layout responsive */
+@media (max-width: 768px) {
+    body {
+        background: #f3f5f8;
+    }
+
+    .card {
+        box-shadow: 0 2px 8px rgba(30, 50, 80, 0.04);
+    }
+}
+
+        
