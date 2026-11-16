@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VBT Athlete Performance System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="icon">🏋️</div>
+        <h1>Velocity-Based Training</h1>
+        <h2>Athlete Performance System</h2>
+        <p>1RM Profiling & Performance Tracking</p>
+    </header>
+
+    <!-- ATHLETE INFORMATION -->
+    <section class="card">
+
+        <h3>1. Athlete Information</h3>
+
+        <div class="form-grid">
+
+            <div>
+                <label for="athleteName">Athlete Name</label>
+                <input type="text" id="athleteName"
+                       placeholder="Enter athlete name">
+            </div>
+
+            <div>
+                <label for="bodyWeight">Body Weight (kg)</label>
+                <input type="number" id="bodyWeight"
+                       min="0" step="0.1"
+                       placeholder="e.g. 70">
+            </div>
+
+            <div class="full-width">
+                <label for="testDate">Testing Date</label>
+                <input type="date" id="testDate">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXERCISE SELECTION -->
+    <section class="card">
+
+        <h3>2. Select Exercise</h3>
+
+        <label for="exercise">Exercise</label>
+
+        <select id="exercise">
+            <option>Bench Press</option>
+            <option>Prone Bench Pull</option>
+            <option>Pull-Up</option>
+            <option>Seated Military Press</option>
+            <option>Lat Pulldown</option>
+            <option>Seated Cable Row</option>
+            <option>Squat</option>
+            <option>Deadlift</option>
+            <option>Hip Thrust</option>
+            <option>Leg Press</option>
+        </select>
+
+        <div class="reference-box">
+            <span>Reference Velocity at 1RM</span>
+            <strong id="v1rmValue">0.17 m/s</strong>
+        </div>
+
+        <details>
+            <summary>View all V1RM reference values</summary>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>V1RM (m/s)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="referenceTable"></tbody>
+                </table>
+            </div>
+        </details>
+
+    </section>
+
+
+    <!-- LOAD VELOCITY INPUTS -->
+    <section class="card">
+
+        <h3>3. Load–Velocity Data</h3>
+
+        <label for="numPoints">
+            Number of data points:
+            <strong id="pointCount">4</strong>
+        </label>
+
+        <input type="range" id="numPoints"
+               min="2" max="8" value="4">
+
+        <div class="range-labels">
+            <span>2 points</span>
+            <span>8 points</span>
+        </div>
+
+        <div id="dataInputs"></div>
+
+        <button id="calculateBtn">
+            Generate Load–Velocity Profile
+        </button>
+
+        <p id="errorMessage" class="error" hidden></p>
+
+    </section>
+
+
+    <!-- RESULTS -->
+    <section class="card results" id="results" hidden>
+
+        <h3>4. Profile Results</h3>
+
+        <div class="main-result">
+            <span>ESTIMATED 1RM</span>
+            <strong id="estimated1RM">0.0 kg</strong>
+        </div>
+
+        <div class="metrics">
+
+            <div class="metric">
+                <span>Regression Slope</span>
+                <strong id="slope">0</strong>
+                <small>kg per m/s</small>
+            </div>
+
+            <div class="metric">
+                <span>Intercept</span>
+                <strong id="intercept">0</strong>
+                <small>kg</small>
+            </div>
+
+            <div class="metric">
+                <span>R² Value</span>
+                <strong id="rSquared">0.000</strong>
+                <small>Goodness of fit</small>
+            </div>
+
+        </div>
+
+        <div class="quality-box">
+            <span>Regression Fit</span>
+            <strong id="fitQuality">Not available</strong>
+        </div>
+
+        <div class="chart-container">
+            <h3>Load–Velocity Profile</h3>
+            <canvas id="velocityChart"></canvas>
+        </div>
+
+        <p class="chart-caption">
+            Blue: Measured lifts |
+            Purple: Regression line |
+            Red: Estimated 1RM
+        </p>
+
+        <div class="applied-notes">
+            <h3>Applied Notes</h3>
+            <ul>
+                <li>Use multiple load–velocity observations.</li>
+                <li>Avoid grinding repetitions during profiling.</li>
+                <li>Individual V1RM calibration can improve precision.</li>
+                <li>Best practice: use 40–80% 1RM loads with maximal intent.</li>
+            </ul>
+        </div>
+
+        <button id="saveBtn" class="save-btn">
+            Save Athlete Test
+        </button>
+
+        <p id="saveMessage" class="success-message" hidden></p>
+
+    </section>
+
+
+    <!-- ATHLETE PROGRESS -->
+    <section class="card">
+
+        <h3>5. Athlete Progress Tracking</h3>
+
+        <p class="hint">
+            View previous testing sessions saved on this browser.
+        </p>
+
+        <div class="chart-container">
+            <h3>Estimated 1RM Progress</h3>
+
+            <label for="progressExercise">
+                Select Exercise
+            </label>
+
+            <select id="progressExercise"></select>
+
+            <canvas id="progressChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Latest Exercise Comparison</h3>
+
+            <p class="hint">
+                Compare the latest estimated 1RM for each exercise
+                belonging to the selected athlete.
+            </p>
+
+            <canvas id="comparisonChart"></canvas>
+        </div>
+
+        <h3>Testing History</h3>
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Exercise</th>
+                        <th>1RM (kg)</th>
+                        <th>R²</th>
+                    </tr>
+                </thead>
+
+                <tbody id="historyTable"></tbody>
+            </table>
+
+        </div>
+
+        <p id="historyMessage" class="hint">
+            No saved testing records yet.
+        </p>
+
+        <button id="refreshHistoryBtn" class="secondary-btn">
+            Refresh History
+        </button>
+
+    </section>
+
+
+    <!-- EXPORT -->
+    <section class="card">
+
+        <h3>6. Export Testing Results</h3>
+
+        <p class="hint">
+            Export saved athlete testing records for reporting
+            and further analysis.
+        </p>
+
+        <button id="csvBtn">
+            Download CSV
+        </button>
+
+        <button id="pdfBtn" class="secondary-btn">
+            Export / Save as PDF
+        </button>
+
+        <button id="clearHistoryBtn" class="danger-btn">
+            Clear All Saved Records
+        </button>
+
+        <p id="exportMessage" class="hint"></p>
+
+    </section>
+
+
+    <footer>
+        Velocity-Based Training | Athlete Performance System
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
