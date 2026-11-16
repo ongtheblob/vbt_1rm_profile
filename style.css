@@ -698,3 +698,273 @@ footer {
         color: #555555;
     }
 }
+
+
+/* =========================================
+   VO2MAX — DESKTOP & COMPUTER LAYOUT
+   Paste at the bottom of style.css
+========================================= */
+
+/* 1. PAGE WIDTH */
+
+html,
+body {
+    width: 100%;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+body {
+    padding: 35px 40px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* 2. HEADER */
+
+header {
+    max-width: 100%;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 32px;
+}
+
+header h2 {
+    font-size: 22px;
+}
+
+/* 3. CARDS */
+
+.card {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+}
+
+/* 4. PARTICIPANT INFORMATION */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 24px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* 5. INPUT FIELDS */
+
+input,
+select,
+textarea {
+    min-width: 0;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+/* 6. TESTING STAGE INPUTS */
+
+.data-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.data-row h4 {
+    grid-column: 1 / -1;
+}
+
+/* 7. METRICS */
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.metric {
+    padding: 22px 15px;
+}
+
+/* 8. CHARTS */
+
+.chart-container {
+    width: 100%;
+    min-width: 0;
+    padding: 24px;
+    margin-top: 22px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    max-width: 100%;
+    max-height: 360px;
+}
+
+/* 9. TABLES */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 550px;
+}
+
+th,
+td {
+    padding: 14px 16px;
+    font-size: 14px;
+}
+
+/* 10. BUTTONS */
+
+button {
+    max-width: 100%;
+    min-height: 46px;
+}
+
+/* 11. REFERENCE BOX */
+
+.reference-box {
+    padding: 20px;
+}
+
+/* 12. NOTES */
+
+.applied-notes {
+    padding: 24px;
+}
+
+/* =========================================
+   LARGE COMPUTER SCREENS
+========================================= */
+
+@media (min-width: 1400px) {
+
+    .container {
+        max-width: 1350px;
+    }
+
+    body {
+        padding: 40px 55px;
+    }
+
+    .card {
+        padding: 35px;
+    }
+}
+
+/* =========================================
+   LAPTOP SCREENS
+========================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    body {
+        padding: 25px 22px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .data-row {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .chart-container {
+        padding: 18px;
+    }
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 22px 16px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .form-grid,
+    .data-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   MOBILE PHONES
+========================================= */
+
+@media (max-width: 550px) {
+
+    body {
+        padding: 18px 12px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    header h2 {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .form-grid,
+    .data-row {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width,
+    .data-row h4 {
+        grid-column: 1 / -1;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        padding: 14px;
+    }
+
+    .main-result strong {
+        font-size: 34px;
+    }
+}
+
